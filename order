@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Joe's Hotdogs</title>
+    <style>
+     h1 {font-size: 45px; font-family: Times, Arial, Helvetica;}   
+     h2 {font-size: 32px; font-family: Times, Arial, Helvetica;} 
+     div {font-size: 20px;}
+
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to Joe's Hotdogs!</h1>
+    <h2>Your Order</h2>
+
+    <div id="numHotdogs"></div>
+    <div id="numFries"></div>
+    <div id="numSodas"></div>
+    <div id="discount"></div>
+    <div id="subtotal"></div>
+    <div id="tax"></div>
+    <div id="total"></div>
+
+    <script language="javascript">
+    
+    // Continue asking question until user gives a numerical input
+    var hotdogs = prompt("How many hotdogs?", "0");
+    while (isNaN(hotdogs))
+    {
+        hotdogs = prompt("Please enter a valid number of hotdogs:", "0");
+    }
+
+    var fries = prompt("How many fries?", "0");
+    while (isNaN(fries))
+    {
+        fries = prompt("Please enter a valid number of fries:", "0");
+    }
+
+    var sodas = prompt("How many sodas?", "0");
+    while (isNaN(sodas))
+    {
+        sodas = prompt("Please enter a valid number of sodas:", "0");
+    }
+
+    document.getElementById("numHotdogs").innerHTML ="# Hotdogs: " + hotdogs + " at $3.25 is $" + (hotdogs * 3.25).toFixed(2);
+    document.getElementById("numFries").innerHTML ="# Fries: " + fries + " at $2.00 is $" + (fries * 2.00).toFixed(2);
+    document.getElementById("numSodas").innerHTML ="# Sodas: " + sodas + " at $1.50 is $" + (sodas * 1.50).toFixed(2);
+
+    var subtotal = (hotdogs * 3.25) + (fries * 2.00) + (sodas * 1.50);
+    var tax = subtotal * .0625;
+
+    // Calcuate subtotal, tax, and total for both discount and non-discount scenarios
+    if ((subtotal > 20) == true)
+    {
+        var newSub = subtotal * .9;
+        var newTax = newSub * .0625;
+        document.getElementById("discount").innerHTML ="You qualified for our 10% discount.";
+        document.getElementById("subtotal").innerHTML ="Subtotal: $" + (newSub).toFixed(2);
+        document.getElementById("tax").innerHTML = "Meals Tax: $" + (newTax).toFixed(2);
+        document.getElementById("total").innerHTML = "Total: $" + (newSub + newTax).toFixed(2);
+    }
+    else
+    {
+        document.getElementById("subtotal").innerHTML ="Subtotal: $" + subtotal.toFixed(2);
+        document.getElementById("tax").innerHTML = "Meals Tax: $" + tax.toFixed(2);
+        document.getElementById("total").innerHTML = "Total: $" + (subtotal + tax).toFixed(2);
+    }
+
+    
+    </script>
+
+</body>
+
+
+</html>
